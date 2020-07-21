@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".main.MainActivity">
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.ymg.bannermodule.auto.AutoBannerViewPager
+            android:id="@+id/autoBannerViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.ymg.bannermodule.auto.AutoBannerIndicator
+            android:id="@+id/autoBannerIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|left|center_horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            app:abiSpace="5dp"
+            app:abiSelectedDrawable="@drawable/indicator_selected"
+            app:abiUnSelectedDrawable="@drawable/indicator_un_selected"
+            tools:ignore="RtlHardcoded" />
+    </FrameLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

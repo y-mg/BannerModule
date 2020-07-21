@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Auto Banner Indicator -->
+    <dimen name="auto_banner_indicator_default_indicator_space">1.5dp</dimen>
+
+</resources>

@@ -1,0 +1,3 @@
+include ':BannerModule'
+include ':app'
+rootProject.name = "BannerView"
