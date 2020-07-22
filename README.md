@@ -30,8 +30,8 @@
 | Option | Default | Description |
 |:----------|:----------|:----------|
 | abiSpace | 1.5dp | 인디케이터 사이 공간 |
-| abiSelectedDrawable | auto_banner_indicator_selected.png | 인디케이터 선택인 경우 Drawable |
-| abiUnSelectedDrawable | auto_banner_indicator_un_selected.png | 인디케이터 미선택일 경우 Drawable |
+| abiSelectedDrawable | auto_banner_indicator_selected.xml | 인디케이터 선택인 경우 Drawable |
+| abiUnSelectedDrawable | auto_banner_indicator_un_selected.xml | 인디케이터 미선택일 경우 Drawable |
 
 ### Kotlin
 
