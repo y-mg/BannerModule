@@ -11,7 +11,7 @@
 | Option | Parameter | Description |
 |:----------|:----------|:----------|
 | setShowBannerDuration(duration: Int) | 설정할 지속 시간 | 배너 보여줄 지속 시간 |
-| setAutoScrollDirection(AUTO_SCROLL_DIRECTION_LEFT or AUTO_SCROLL_DIRECTION_RIGHT) | 설정할 방향 | 배너 자동 스크롤 시 방향 |
+| setAutoScrollDirection(<br/>&npsp;&npsp;&npsp;&npsp;&npsp;AUTO_SCROLL_DIRECTION_LEFT<br/>&npsp;&npsp;&npsp;&npsp;&npsp;or<br/>&npsp;&npsp;&npsp;&npsp;&npsp;AUTO_SCROLL_DIRECTION_RIGHT<br/>) | 설정할 방향 | 배너 자동 스크롤 시 방향 |
 | setAutoScrollAnimationDuration(duration: Double) | 설정할 지속 시간 | 스크롤 시 애니메이션 지속 시간 |
 | setSwipeScrollAnimationDuration(duration: Double) | 설정할 지속 시간 | 스와이프 시 애니메이션 지속 시간 |
 | setStartAutoScroll(duration: Double or Void) | 설정할 지속 시간 or Void | 자동 스크롤 시작 및 인자를 줄 경우 첫 배너를 보여줄 지속시간 설정 |
@@ -37,7 +37,7 @@
 
 | Function | Parameter | Description |
 |:----------|:----------|:----------|
-| setConnectViewPager(<br/>       autoBannerViewPager: AutoBannerViewPager,<br/>       bannerListSize: Int<br/>) | AutoBannerViewPager,<br/>배너 리스트 사이즈 | 인디케이터를 뷰페이저에 연결 |
+| setConnectViewPager(<br/>&npsp;&npsp;&npsp;&npsp;&npsp;autoBannerViewPager: AutoBannerViewPager,<br/>&npsp;&npsp;&npsp;&npsp;&npsp;bannerListSize: Int<br/>) | AutoBannerViewPager,<br/>배너 리스트 사이즈 | 인디케이터를 뷰페이저에 연결 |
 | setStartIndicator() | Void | 인디케이터 시작 |
 <br/>
 <br/>
