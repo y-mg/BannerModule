@@ -37,7 +37,7 @@
 
 | Function | Parameter | Description |
 |:----------|:----------|:----------|
-| setConnectViewPager(autoBannerViewPager: AutoBannerViewPager, bannerListSize: Int) | AutoBannerViewPager, 배너 리스트 사이즈 | 인디케이터를 뷰페이저에 연결 |
+| setConnectViewPager(<br/>       autoBannerViewPager: AutoBannerViewPager,<br/>       bannerListSize: Int<br/>) | AutoBannerViewPager,<br/>배너 리스트 사이즈 | 인디케이터를 뷰페이저에 연결 |
 | setStartIndicator() | Void | 인디케이터 시작 |
 <br/>
 <br/>
