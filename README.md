@@ -1,2 +1,45 @@
 # BannerModule
-This is "BannerModule".
+<br/>
+<br/>
+
+
+
+## 1. AutoBannerViewPager
+
+### Kotlin
+
+| Option | Parameter | Description |
+|:----------|:----------|:----------|
+| setShowBannerDuration(duration: Int) | 설정할 지속 시간 | 배너 보여줄 지속 시간 |
+| setAutoScrollDirection(AUTO_SCROLL_DIRECTION_LEFT or AUTO_SCROLL_DIRECTION_RIGHT) | 설정할 방향 | 배너 자동 스크롤 시 방향 |
+| setAutoScrollAnimationDuration(duration: Double) | 설정할 지속 시간 | 스크롤 시 애니메이션 지속 시간 |
+| setSwipeScrollAnimationDuration(duration: Double) | 설정할 지속 시간 | 스와이프 시 애니메이션 지속 시간 |
+| setStartAutoScroll(duration: Double or Void) | 설정할 지속 시간 or Void | 자동 스크롤 시작 및 인자를 줄 경우 첫 배너를 보여줄 지속시간 설정 |
+
+### Recommendation
+왼쪽 or 오른쪽으로 무한 스크롤이 되도록 currentItem 옵션을 주어 현재 위치를 가운데쯤에 위치하도록 설정할 것을 권장함.
+<br/>
+<br/>
+
+
+
+## 2. AutoBannerIndicator
+
+### XML
+
+| Option | Default | Description |
+|:----------|:----------|:----------|
+| abiSpace | 1.5dp | 인디케이터 사이 공간 |
+| abiSelectedDrawable | auto_banner_indicator_selected.png | 인디케이터 선택인 경우 Drawable |
+| abiUnSelectedDrawable | auto_banner_indicator_un_selected.png | 인디케이터 미선택일 경우 Drawable |
+
+### Kotlin
+
+| Function | Parameter | Description |
+|:----------|:----------|:----------|
+| setConnectViewPager(autoBannerViewPager: AutoBannerViewPager, bannerListSize: Int) | AutoBannerViewPager, 배너 리스트 사이즈 | 인디케이터를 뷰페이저에 연결 |
+| setStartIndicator() | Void | 인디케이터 시작 |
+<br/>
+<br/>
+
+
