@@ -10,7 +10,7 @@
 
 | Option | Parameter | Description |
 |:----------|:----------|:----------|
-| setShowBannerDuration(duration: Int) | 설정할 지속 시간 | 배너 보여줄 지속 시간 |
+| setShowBannerDuration(<br/>&nbsp;&nbsp;&nbsp;&nbsp;duration: Int<br/>) | 설정할 지속 시간 | 배너 보여줄 지속 시간 |
 | setAutoScrollDirection(<br/>&nbsp;&nbsp;&nbsp;&nbsp;AUTO_SCROLL_DIRECTION_LEFT<br/>&nbsp;&nbsp;&nbsp;&nbsp;or<br/>&nbsp;&nbsp;&nbsp;&nbsp;AUTO_SCROLL_DIRECTION_RIGHT<br/>) | 설정할 방향 | 배너 자동 스크롤 시 방향 |
 | setAutoScrollAnimationDuration(<br/>&nbsp;&nbsp;&nbsp;&nbsp;duration: Double<br/>) | 설정할 지속 시간 | 스크롤 시 애니메이션 지속 시간 |
 | setSwipeScrollAnimationDuration(<br/>&nbsp;&nbsp;&nbsp;&nbsp;duration: Double<br/>) | 설정할 지속 시간 | 스와이프 시 애니메이션 지속 시간 |
