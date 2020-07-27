@@ -16,7 +16,6 @@
 | setSwipeScrollAnimationDuration(<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;duration: Double<br/>) | 지속 시간 | 스와이프 시 애니메이션 지속 시간 |
 | setStartAutoScroll(<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;duration: Double<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;or<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Void<br/>) | 지속 시간<br/>or<br/>Void | 자동 스크롤 시작 및 인자를 줄 경우 첫 배너를 보여줄 지속시간 설정 |
 
-### Recommendation
 왼쪽 or 오른쪽으로 무한 스크롤이 되도록 currentItem 옵션을 주어 현재 위치를 가운데쯤에 위치하도록 설정할 것을 권장함.
 <br/>
 <br/>
