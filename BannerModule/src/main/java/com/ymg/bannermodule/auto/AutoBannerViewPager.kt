@@ -2,6 +2,7 @@ package com.ymg.bannermodule.auto
 
 import android.content.Context
 import android.os.Handler
+import android.os.Looper
 import android.os.Message
 import android.util.AttributeSet
 import android.view.MotionEvent
@@ -9,7 +10,7 @@ import android.view.animation.Interpolator
 import androidx.core.view.MotionEventCompat
 import androidx.viewpager.widget.ViewPager
 import java.lang.ref.WeakReference
-import java.time.Duration
+
 
 class AutoBannerViewPager : ViewPager {
 
@@ -228,7 +229,7 @@ class AutoBannerViewPager : ViewPager {
     /**
      * Handler
      */
-    private class AutoBannerHandler(autoBannerViewPager: AutoBannerViewPager) : Handler() {
+    private class AutoBannerHandler(autoBannerViewPager: AutoBannerViewPager) : Handler(Looper.getMainLooper()) {
 
         private val autoBannerViewPager: WeakReference<AutoBannerViewPager> = WeakReference(autoBannerViewPager)
 
