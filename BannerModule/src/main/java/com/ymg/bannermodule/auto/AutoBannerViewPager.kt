@@ -12,6 +12,13 @@ import androidx.viewpager.widget.ViewPager
 import java.lang.ref.WeakReference
 
 
+
+/**
+ * @author y-mg
+ *
+ * 이것은 AutoBannerIndicator 와 함께 사용되는 AutoBannerViewPager 입니다.
+ * This is the AutoBannerViewPager used with AutoBannerIndicator.
+ */
 class AutoBannerViewPager : ViewPager {
 
     companion object {
@@ -21,26 +28,16 @@ class AutoBannerViewPager : ViewPager {
         const val SCROLL_WHAT = 0
     }
 
-    // 배너 보여주는 지속 시간
-    private var showBannerDuration = 5000L
-
-    // 자동 스크롤 방향
-    private var autoScrollDirection = AUTO_SCROLL_DIRECTION_RIGHT
-
-    // 자동 스크롤 애니메이션 지속 시간
-    private var autoScrollAnimationDuration = 1.0
-
-    // 스와이프 스크롤 애니메이션 지속 시간
-    private var swipeScrollAnimationDuration = 1.0
-
-    // 자동 스크롤 실행 여부, 자동 스크롤 중지 여부(배너 터치 시)
+    private var duration = 5000L
+    private var direction = AUTO_SCROLL_DIRECTION_RIGHT
+    private var scrollAnimationDuration = 1.0
+    private var swipeAnimationDuration = 1.0
     private var isRunAutoScroll = false
     private var isStopAutoScroll = false
 
-    // 배너 Handler
+    // Handler
     private var autoBannerHandler = AutoBannerHandler(this)
 
-    // 배너 스크롤러
     private var autoBannerScroller: AutoBannerScroller? = null
 
 
@@ -56,33 +53,43 @@ class AutoBannerViewPager : ViewPager {
         init()
     }
 
+
+
     private fun init() {
         autoBannerHandler = AutoBannerHandler(this)
-        setAutoBannerScrollerInAutoBannerViewPager()
+        setAttachAutoBannerScroller()
     }
 
 
 
     /**
-     * 자동 스크롤 시작
+     * - 자동 스크롤을 시작한다.
+     * - Start automatic scrolling.
      */
     fun setStartAutoScroll() {
         isRunAutoScroll = true
         autoBannerScroller?.let {
-            setSendMessageToAutoBannerHandler((showBannerDuration + it.duration / autoScrollAnimationDuration * swipeScrollAnimationDuration).toLong())
+            setAutoBannerHandlerMessage((duration + it.duration / scrollAnimationDuration * swipeAnimationDuration).toLong())
         }
     }
 
+
+
     /**
-     * 자동 스크롤 시작 및 첫 번째 스크롤 지연 시간 설정
+     * - 자동 스크롤을 시작하고 지연시간을 설정한다.
+     * - Start automatic scrolling and set the delay time.
+     *
+     * @param delayTimeInMills -> Delay Time
      */
     fun setStartAutoScroll(delayTimeInMills: Int) {
         isRunAutoScroll = true
-        setSendMessageToAutoBannerHandler(delayTimeInMills.toLong())
+        setAutoBannerHandlerMessage(delayTimeInMills.toLong())
     }
 
+
+
     /**
-     * 자동 스크롤 중지
+     * Setting Stop Auto Scroll
      */
     private fun setStopAutoScroll() {
         isRunAutoScroll = false
@@ -92,39 +99,57 @@ class AutoBannerViewPager : ViewPager {
 
 
     /**
-     * 배너 보여주는 지속 시간 설정
+     * - 배너를 보여줄 지속시간을 설정한다.
+     * - Set the duration to show the banner.
+     *
+     * @param duration -> Duration to show the banner
      */
-    fun setShowBannerDuration(showBannerDuration: Int) {
-        this.showBannerDuration = showBannerDuration.toLong()
-    }
-
-    /**
-     * 자동 스크롤 시 애니메이션 속도 설정
-     */
-    fun setSwipeScrollAnimationDuration(swipeScrollAnimationDuration: Double) {
-        this.swipeScrollAnimationDuration = swipeScrollAnimationDuration
-    }
-
-    /**
-     * 스와프 시 애니메이션 속도 설정
-     */
-    fun setAutoScrollAnimationDuration(autoScrollAnimationDuration: Double) {
-        this.autoScrollAnimationDuration = autoScrollAnimationDuration
-    }
-
-    /**
-     * 스크롤 방향 설정
-     */
-    fun setAutoScrollDirection(autoScrollDirection: Int) {
-        this.autoScrollDirection = autoScrollDirection
+    fun setBannerDuration(duration: Int) {
+        this.duration = duration.toLong()
     }
 
 
 
     /**
-     * 배너 Handler 에 메시지 전달
+     * - 스와프 시 애니메이션 속도를 설정한다.
+     * - Set animation speed when swapping.
+     *
+     * @param swipeAnimationDuration -> Animation speed when swiping.
      */
-    private fun setSendMessageToAutoBannerHandler(delayTimeInMills: Long) {
+    fun setSwipeScrollAnimationDuration(swipeAnimationDuration: Double) {
+        this.swipeAnimationDuration = swipeAnimationDuration
+    }
+
+
+
+    /**
+     * - 스크롤 시 애니메이션 속도를 설정한다.
+     * - Set animation speed when scrolling.
+     *
+     * @param scrollAnimationDuration -> Animation speed when scrolling
+     */
+    fun setAutoScrollAnimationDuration(scrollAnimationDuration: Double) {
+        this.scrollAnimationDuration = scrollAnimationDuration
+    }
+
+
+
+    /**
+     * - 스크롤 방향을 설정한다.
+     * - Set the scroll direction.
+     *
+     * @param direction -> AUTO_SCROLL_DIRECTION_LEFT or AUTO_SCROLL_DIRECTION_RIGHT
+     */
+    fun setDirection(direction: Int) {
+        this.direction = direction
+    }
+
+
+
+    /**
+     * Setting AutoBannerHandler Message
+     */
+    private fun setAutoBannerHandlerMessage(delayTimeInMills: Long) {
         autoBannerHandler.removeMessages(SCROLL_WHAT)
         autoBannerHandler.sendEmptyMessageDelayed(SCROLL_WHAT, delayTimeInMills)
     }
@@ -132,9 +157,9 @@ class AutoBannerViewPager : ViewPager {
 
 
     /**
-     * 배너 ViewPager 에 배너 스크롤러 설정 반영
+     * Setting Attach AutoBannerScroller
      */
-    private fun setAutoBannerScrollerInAutoBannerViewPager() {
+    private fun setAttachAutoBannerScroller() {
         try {
             val scrollerField = ViewPager::class.java.getDeclaredField("mScroller")
             scrollerField.isAccessible = true
@@ -157,9 +182,9 @@ class AutoBannerViewPager : ViewPager {
 
 
     /**
-     * 자동 스크롤 아이템 설정
+     * Setting Auto Scroll Item
      */
-    fun setAutoScrollItem() {
+    private fun setAutoScrollItem() {
         val adapter = adapter
         var currentItem = currentItem
 
@@ -170,13 +195,13 @@ class AutoBannerViewPager : ViewPager {
                 return
             }
 
-            val nextItem = when (autoScrollDirection) {
-                // 자동 스크롤 방향 왼쪽일 경우
+            val nextItem = when (direction) {
+                // Direction Left
                 AUTO_SCROLL_DIRECTION_LEFT -> {
                     --currentItem
                 }
 
-                // 자동 스크롤 방향 오른쪽일 경우
+                // Direction Right
                 else -> {
                     ++currentItem
                 }
@@ -205,13 +230,13 @@ class AutoBannerViewPager : ViewPager {
         val action = MotionEventCompat.getActionMasked(motionEvent)
 
         when {
-            // 배너가 터치 된 경우 자동 스크롤 중지
+            // Stop Auto Scroll
             action == MotionEvent.ACTION_DOWN && isRunAutoScroll -> {
                 isStopAutoScroll = true
                 setStopAutoScroll()
             }
 
-            // 배너가 터치 된 이후 자동 스크롤 다시 시작
+            // Restart Auto Scroll
             motionEvent.action == MotionEvent.ACTION_UP && isStopAutoScroll -> {
                 setStartAutoScroll()
             }
@@ -227,7 +252,10 @@ class AutoBannerViewPager : ViewPager {
 
 
     /**
-     * Handler
+     * @author y-mg
+     *
+     * 이것은 AutoBanner 를 핸들링하는 클래스입니다.
+     * This is a class that handles AutoBanner.
      */
     private class AutoBannerHandler(autoBannerViewPager: AutoBannerViewPager) : Handler(Looper.getMainLooper()) {
 
@@ -242,12 +270,11 @@ class AutoBannerViewPager : ViewPager {
 
                     autoBannerViewPager?.let { bannerViewPager ->
                         bannerViewPager.autoBannerScroller?.let { bannerScroller ->
-                            bannerScroller.setAutoBannerScrollerDuration(bannerViewPager.autoScrollAnimationDuration)
+                            bannerScroller.setAutoBannerScrollerDuration(bannerViewPager.scrollAnimationDuration)
                             bannerViewPager.setAutoScrollItem()
 
-                            bannerScroller.setAutoBannerScrollerDuration(bannerViewPager.swipeScrollAnimationDuration)
-
-                            bannerViewPager.setSendMessageToAutoBannerHandler(bannerViewPager.showBannerDuration + bannerScroller.duration)
+                            bannerScroller.setAutoBannerScrollerDuration(bannerViewPager.swipeAnimationDuration)
+                            bannerViewPager.setAutoBannerHandlerMessage(bannerViewPager.duration + bannerScroller.duration)
                         }
                     }
                 }

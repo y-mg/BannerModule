@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Auto Banner Indicator -->
+    <!-- AutoBannerIndicator -->
     <declare-styleable name="AutoBannerIndicatorStyle">
         <attr name="abiSpace" format="dimension"/>
-        <attr name="abiSelectedDrawable" format="reference"/>
-        <attr name="abiUnSelectedDrawable" format="reference"/>
+        <attr name="abiSelected" format="reference"/>
+        <attr name="abiUnSelected" format="reference"/>
     </declare-styleable>
 
 </resources>

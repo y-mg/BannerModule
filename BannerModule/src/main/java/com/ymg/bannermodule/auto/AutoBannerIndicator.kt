@@ -10,7 +10,26 @@ import androidx.viewpager.widget.ViewPager
 import com.ymg.bannermodule.R
 
 
+
+/**
+ * @author y-mg
+ *
+ * 이것은 AutoBannerViewPager 와 함께 사용되는 AutoBannerIndicator 입니다.
+ * This is the AutoBannerIndicator used with AutoBannerViewPager.
+ */
 class AutoBannerIndicator : LinearLayout {
+
+    private var space: Int = 0
+    private var selected: Drawable? = null
+    private var unSelected: Drawable? = null
+
+    // Real Count
+    private var realCount = 0
+
+    private lateinit var viewPager: ViewPager
+    private var indicator: MutableList<ImageView> = mutableListOf()
+
+
 
     constructor(context: Context) : super(context) {
         init(context)
@@ -28,20 +47,6 @@ class AutoBannerIndicator : LinearLayout {
         init(context, attrs, defStyleAttr)
     }
 
-    // 인디케이터 사이 공간, 인디케이터 선택 Drawable, 인디케이터 미선택 Drawable
-    private var indicatorSpace: Int = 0
-    private var indicatorSelectedDrawable: Drawable? = null
-    private var indicatorUnSelectedDrawable: Drawable? = null
-
-    // 진짜 배너 카운트
-    private var realBannerCount = 0
-
-    // ViewPager
-    private lateinit var viewPager: ViewPager
-
-    // Indicator
-    private var indicator: MutableList<ImageView> = mutableListOf()
-
 
 
     private fun init(context: Context?, attrs: AttributeSet? = null, defStyleAttr: Int = 0) {
@@ -53,70 +58,74 @@ class AutoBannerIndicator : LinearLayout {
                 defStyleAttr
             )
 
-
-        // 인디케이터 사이 공간
-        val autoBannerIndicatorSpace =
+        // Indicator 사이의 공간을 설정한다.
+        // Set the space between the indicators.
+        val space =
             typedArray?.getDimension(
                 R.styleable.AutoBannerIndicatorStyle_abiSpace,
                 context.resources.getDimension(R.dimen.auto_banner_indicator_default_indicator_space)
             )?.toInt()
 
-        // 선택 인디케이터 Drawable
-        val autoBannerIndicatorSelectedDrawable =
+        // 선택된 인디케이터의 아이콘을 설정한다.
+        // Sets the icon for the selected indicator.
+        val selected =
             typedArray?.getResourceId(
-                R.styleable.AutoBannerIndicatorStyle_abiSelectedDrawable,
+                R.styleable.AutoBannerIndicatorStyle_abiSelected,
                 R.drawable.auto_banner_indicator_selected
             )
 
-        // 미선택 인디케이터 Drawable
-        val autoBannerIndicatorUnSelectedDrawable =
+        // 미선택된 인디케이터의 아이콘을 설정한다.
+        // Set the icon for the unselected indicator.
+        val unSelected =
             typedArray?.getResourceId(
-                R.styleable.AutoBannerIndicatorStyle_abiUnSelectedDrawable,
+                R.styleable.AutoBannerIndicatorStyle_abiUnSelected,
                 R.drawable.auto_banner_indicator_un_selected
             )
 
 
-        if (autoBannerIndicatorSpace != null && autoBannerIndicatorSelectedDrawable != null && autoBannerIndicatorUnSelectedDrawable != null) {
-            setInit(autoBannerIndicatorSpace, autoBannerIndicatorSelectedDrawable, autoBannerIndicatorUnSelectedDrawable)
-        }
+        setInit(
+            space = space ?: 1,
+            selected = selected ?: R.drawable.auto_banner_indicator_selected,
+            unSelected = unSelected ?: R.drawable.auto_banner_indicator_un_selected
+        )
     }
 
 
 
     /**
-     * 설정
+     * Setting Init
      */
     private fun setInit(
-        autoBannerIndicatorSize: Int,
-        autoBannerIndicatorSelectedDrawable: Int,
-        autoBannerIndicatorUnSelectedDrawable: Int
+        space: Int,
+        selected: Int,
+        unSelected: Int
     ) {
-        indicatorSpace = autoBannerIndicatorSize
-
-        ContextCompat.getDrawable(context, autoBannerIndicatorSelectedDrawable)?.let {
-            indicatorSelectedDrawable = it
-        }
-
-        ContextCompat.getDrawable(context, autoBannerIndicatorUnSelectedDrawable)?.let {
-            indicatorUnSelectedDrawable = it
-        }
+        this.space = space
+        this.selected = ContextCompat.getDrawable(context, selected)
+        this.unSelected = ContextCompat.getDrawable(context, unSelected)
     }
 
 
 
-
-
     /**
-     * ViewPager 에 인디케이터 연결
+     * - AutoBannerViewPager 를 연결한다.
+     * - Attach to AutoBannerViewPager.
+     *
+     * @param viewPager -> AutoBannerViewPager
+     *
+     * @param realCount -> Number of items in ViewPager
      */
-    fun setConnectViewPager(viewPager: ViewPager, realBannerCount: Int) {
+    fun setAttachAutoBannerViewPager(viewPager: ViewPager, realCount: Int) {
         this.viewPager = viewPager
-        this.realBannerCount = realBannerCount
-        bindView()
+        this.realCount = realCount
+        setViewPagerListener()
     }
 
+
+
     /**
-     * 인디케이터 시작
+     * - 인디케이터를 동작시킨다.
+     * - Start the indicator.
      */
     fun setStartIndicator() {
         removeAllViews()
@@ -125,12 +134,10 @@ class AutoBannerIndicator : LinearLayout {
 
 
 
-
-
     /**
-     * BindView
+     * Setting ViewPager Listener
      */
-    private fun bindView() {
+    private fun setViewPagerListener() {
         viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(
                 position: Int,
@@ -139,39 +146,43 @@ class AutoBannerIndicator : LinearLayout {
             ) { }
 
             override fun onPageSelected(position: Int) {
-                setSelectIndicator(position % realBannerCount)
+                setSelectIndicator(position % realCount)
             }
 
             override fun onPageScrollStateChanged(state: Int) {}
         })
     }
 
+
+
     /**
-     * 인디케이터 추가
+     * Setting Add Indicator
      */
     private fun setAddIndicator() {
-        for (i in 0 until realBannerCount) {
+        for (i in 0 until realCount) {
             indicator.add(ImageView(context).apply {
-                setPadding(indicatorSpace, 0, indicatorSpace, 0)
+                setPadding(space, 0, space, 0)
                 isSelected = viewPager.currentItem == i
             })
             addView(indicator[i])
         }
 
         if (indicator.size != 0) {
-            setSelectIndicator(viewPager.currentItem % realBannerCount)
+            setSelectIndicator(viewPager.currentItem % realCount)
         }
     }
 
+
+
     /**
-     * 인디케이터 선택 처리
+     * Setting Select Indicator
      */
     private fun setSelectIndicator(position: Int) {
         for (i in indicator.indices) {
             if (i == position) {
-                indicator[i].setImageDrawable(indicatorSelectedDrawable)
+                indicator[i].setImageDrawable(selected)
             } else {
-                indicator[i].setImageDrawable(indicatorUnSelectedDrawable)
+                indicator[i].setImageDrawable(unSelected)
             }
         }
     }

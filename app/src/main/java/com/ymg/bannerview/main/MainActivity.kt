@@ -18,10 +18,13 @@ class MainActivity : BasicActivity() {
 
         val mainAdapter = MainAdapter(this)
 
+        // 왼쪽 또는 오른쪽으로 무한 스크롤이 되도록 currentItem 옵션을 주어 현재 위치를 가운데쯤에 위치하도록 설정할 것을 권장한다.
+        // It is recommended that the current position be set to be centered by giving
+        // the currentItem option to scroll left or right indefinitely.
         viewBinding.autoBannerViewPager.apply {
             adapter = mainAdapter
-            setShowBannerDuration(1000) // 배너를 보여줄 지속 시간
-            setAutoScrollDirection(AUTO_SCROLL_DIRECTION_RIGHT) // 자동 스크롤 방향
+            setBannerDuration(1000) // 배너를 보여줄 지속 시간
+            setDirection(AUTO_SCROLL_DIRECTION_RIGHT) // 자동 스크롤 방향
             setAutoScrollAnimationDuration(5.0) // 스크롤 애니메이션 지속 시간
             setSwipeScrollAnimationDuration(2.5) // 스와이프 애니메이션 지속 시간
             currentItem = 3 * 100 // 무한 스크롤을 위해 현재 아이템 위치를 가운데 쯤에 위치하다록 설정
@@ -30,7 +33,7 @@ class MainActivity : BasicActivity() {
         }
 
         viewBinding.autoBannerIndicator.apply {
-            setConnectViewPager(viewBinding.autoBannerViewPager, 3) // 뷰페이저에 연결
+            setAttachAutoBannerViewPager(viewBinding.autoBannerViewPager, 3) // 뷰페이저에 연결
             setStartIndicator() // 인디케이터 시작
         }
     }

@@ -30,8 +30,8 @@
             android:layout_marginLeft="10dp"
             android:layout_marginBottom="10dp"
             app:abiSpace="5dp"
-            app:abiSelectedDrawable="@drawable/indicator_selected"
-            app:abiUnSelectedDrawable="@drawable/indicator_un_selected"
+            app:abiSelected="@drawable/indicator_selected"
+            app:abiUnSelected="@drawable/indicator_un_selected"
             tools:ignore="RtlHardcoded" />
     </FrameLayout>
 
