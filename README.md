@@ -146,7 +146,9 @@ fun setStartIndicator()
 
 ```kotlin
 override fun onCreate(savedInstanceState: Bundle?) {
-    ...
+                .
+                .
+                .
 
     viewBinding.autoBannerIndicator.apply {
         setAttachAutoBannerViewPager(viewBinding.autoBannerViewPager, 3)
