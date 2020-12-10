@@ -66,7 +66,7 @@ class AutoBannerIndicator : LinearLayout {
                 context.resources.getDimension(R.dimen.auto_banner_indicator_default_indicator_space)
             )?.toInt()
 
-        // 선택된 인디케이터의 아이콘을 설정한다.
+        // 선택된 Indicator 의 아이콘을 설정한다.
         // Sets the icon for the selected indicator.
         val selected =
             typedArray?.getResourceId(
@@ -74,7 +74,7 @@ class AutoBannerIndicator : LinearLayout {
                 R.drawable.auto_banner_indicator_selected
             )
 
-        // 미선택된 인디케이터의 아이콘을 설정한다.
+        // 미선택된 Indicator 의 아이콘을 설정한다.
         // Set the icon for the unselected indicator.
         val unSelected =
             typedArray?.getResourceId(

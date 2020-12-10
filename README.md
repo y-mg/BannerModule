@@ -94,7 +94,7 @@ override fun onCreate(savedInstanceState: Bundle?) {
 
 ## 2. AutoBannerIndicator
 
-> 이것은 AutoBannerViewPager 와 함께 사용되는 AutoBannerIndicator 입니다.
+> 이것은 AutoBannerViewPager 와 함께 사용되는 AutoBannerIndicator 입니다.<br/>
 > This is the AutoBannerIndicator used with AutoBannerViewPager.
 
 
@@ -108,6 +108,17 @@ override fun onCreate(savedInstanceState: Bundle?) {
     app:abiSelected="@drawable/indicator_selected"
     app:abiUnSelected="@drawable/indicator_un_selected" />
 ```
+- app:abiSpace
+    - Indicator 사이의 공간을 설정한다.
+    - Set the space between the indicators.
+
+- app:abiSelected
+    - 선택된 Indicator 의 아이콘을 설정한다.
+    - Sets the icon for the selected indicator.
+
+- app:abiUnSelected
+    - 미선택된 Indicator 의 아이콘을 설정한다.
+    - Set the icon for the unselected indicator.
 
 
 ### Kotlin Function
