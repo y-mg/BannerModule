@@ -5,6 +5,30 @@
 
 
 
+## Install
+[![](https://jitpack.io/v/y-mg/bannermodule.svg)](https://jitpack.io/#y-mg/bannermodule)
+
+Add Jitpack to your repositories in your `build.gradle` file
+
+```groovy
+allprojects {
+    repositories {
+      // ...
+      maven { url 'https://jitpack.io' }
+    }
+}
+```
+
+Add the below to your dependencies, again in your gradle.build file
+
+```groovy
+implementation 'com.github.y-mg:bannermodule:{version}'
+```
+<br/>
+<br/>
+
+
+
 ## 1. AutoBannerViewPager
 
 > 이것은 AutoBannerIndicator 와 함께 사용되는 AutoBannerViewPager 입니다.<br/>
@@ -108,15 +132,15 @@ override fun onCreate(savedInstanceState: Bundle?) {
     app:abiSelected="@drawable/indicator_selected"
     app:abiUnSelected="@drawable/indicator_un_selected" />
 ```
-- app:abiSpace
+- `app:abiSpace`
     - Indicator 사이의 공간을 설정한다.
     - Set the space between the indicators.
 
-- app:abiSelected
+- `app:abiSelected`
     - 선택된 Indicator 의 아이콘을 설정한다.
     - Sets the icon for the selected indicator.
 
-- app:abiUnSelected
+- `app:abiUnSelected`
     - 미선택된 Indicator 의 아이콘을 설정한다.
     - Set the icon for the unselected indicator.
 
